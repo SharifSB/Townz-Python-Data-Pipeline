@@ -6,9 +6,9 @@ baseURL = "https://www.google.com/search?q="
 
 
 def getDescriptions(neighborhood, city, state):
-    string = r'^.*?' + state
+    string = r'^.*?' + state.title()
     searchURL = baseURL + \
-        "+".join(neighborhood.split("_")) + "+" + "+".join(city.split("_"))
+        "+".join(neighborhood.split("_")).title() + "+" + "+".join(city.split("_")).title()
     source = requests.get(searchURL).text
     descriptionToSend = ""
     soup = BeautifulSoup(source, "lxml")

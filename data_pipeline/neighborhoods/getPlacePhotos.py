@@ -6,4 +6,4 @@ params = "&inputtype=textquery&fields=photos"
 def getPhotos(neighborhood, city, state):
     FullURL = baseURL + "%20".join(neighborhood.split("_")) + "%20" + "%20".join(city.split("_")) + params + apiKey
     data = requests.get(FullURL).json()
-    return data['candidates']
+    return data

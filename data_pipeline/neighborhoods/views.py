@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .getNeighborhoodDescriptions import getDescriptions
 from .getPlacePhotos import getPhotos
+from .buildNeighborhoodRankings import standardDev
+from .getLatLongCity import getLatLong
 # Create your views here.
 
 def neighborhoodDescriptions(request, neighborhood, city, state):
@@ -17,5 +19,15 @@ def neighborhoodPhotos(request, neighborhood, city, state):
     placeID = getPhotos(neighborhood, city, state)
 
     print(placeID)
-    response = HttpResponse(placeID)
+    response = JsonResponse(placeID)
+    return response
+
+def getStandardDev(request):
+    numsToReturn = standardDev()
+    response = HttpResponse(numsToReturn)
+    return response
+def getLatAndLong(request, city, state):
+    print(city, state)
+    data = getLatLong(city, state)
+    response = JsonResponse(data, safe=False)
     return response
