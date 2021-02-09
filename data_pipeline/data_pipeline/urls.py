@@ -18,5 +18,7 @@ from django.urls import include, path, re_path
 import re
 urlpatterns = [
     re_path(r'^neighborhoods/', include('neighborhoods.urls')),
+    re_path(r'^properties/', include('VacationRentals.urls')),
     path('admin/', admin.site.urls),
+
 ]
