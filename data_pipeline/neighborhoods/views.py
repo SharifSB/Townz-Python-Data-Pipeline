@@ -4,6 +4,7 @@ from .getNeighborhoodDescriptions import getDescriptions
 from .getPlacePhotos import getPhotos
 from .buildNeighborhoodRankings import standardDev
 from .getLatLongCity import getLatLong
+from .getairbnbtest import getListings
 # Create your views here.
 
 def neighborhoodDescriptions(request, neighborhood, city, state):
@@ -21,7 +22,10 @@ def neighborhoodPhotos(request, neighborhood, city, state):
     print(placeID)
     response = JsonResponse(placeID)
     return response
-
+def getAirbnb(request):
+    data = getListings()
+    response = HttpResponse(data)
+    return response
 def getStandardDev(request):
     numsToReturn = standardDev()
     response = HttpResponse(numsToReturn)
